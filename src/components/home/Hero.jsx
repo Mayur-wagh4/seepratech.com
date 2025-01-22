@@ -14,8 +14,7 @@ const Hero = () => {
         {/* Subheading */}
         <p className="text-lg md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed animate__animated animate__fadeIn animate__delay-2s">
           At <strong>Seepratech</strong>, we specialize in building seamless web and mobile solutions that fuel business growth. Empower your brand with our cloud and AI-powered technologies.
-        </p>
-
+        </p> 
         {/* CTA Button */}
         <div className="animate__animated animate__fadeIn animate__delay-3s">
         <Link to="/contact">

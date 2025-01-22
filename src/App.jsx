@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import SplashLoader from './components/common/Loader'; // Import Splash Loader
 import Layout from './components/layout/Layout';
 import { ROUTES } from './constants/routes';
 import { ThemeProvider } from './context/ThemeContext';
@@ -10,6 +11,19 @@ import Portfolio from './pages/Portfolio';
 import Services from './pages/Services';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); 
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <SplashLoader />; 
+  }
+
   return (
     <ThemeProvider>
       <Router>

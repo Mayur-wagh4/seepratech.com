@@ -30,23 +30,19 @@ const Navbar = () => {
           : "bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto px-8">
+        <div className="flex items-center justify-between h-24">
           {/* Logo Section */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative w-24 h-18 rounded-lg bg-white shadow-soft p-0.5">
-              <img
-                src="/logo.png"
-                alt="Logo"
-                className="w-full h-full rounded-lg object-cover"
-              />
-            </div>
-          </Link>
+          <div className="relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36">
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="object-contain w-full h-full" // Maintains aspect ratio and ensures the logo fits within the container
+            />
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-          
-
             <Link to="/" className="nav-link">
               Home
             </Link>
@@ -83,8 +79,8 @@ const Navbar = () => {
               Portfolio
             </Link>
             <Link to="/contact">
-          <Button onClick={() => console.log('Get Started clicked')}>Get Started</Button>
-        </Link>
+              <Button onClick={() => console.log('Get Started clicked')}>Get Started</Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,8 +101,6 @@ const Navbar = () => {
           }`}
         >
           <div className="py-4 space-y-4">
-          
-
             <Link to="/" className="mobile-nav-link">
               Home
             </Link>
