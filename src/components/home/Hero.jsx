@@ -1,169 +1,223 @@
 import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-import Button from "../common/Button";
+import { 
+  CloudIcon, RocketIcon, ChartLineIcon, ShieldIcon, 
+  ArrowRightIcon, CodeIcon, DatabaseIcon 
+} from "lucide-react";
+
 const Hero = () => {
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 50]);
+
+  const heroVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100
+      }
+    }
+  };
+
+  const services = [
+    { 
+      icon: <CloudIcon className="text-blue-400" />, 
+      title: "Cloud Native",
+      description: "Scalable infrastructure beyond boundaries."
+    },
+    { 
+      icon: <RocketIcon className="text-purple-400" />, 
+      title: "AI Acceleration",
+      description: "Intelligent solutions, transformative outcomes."
+    },
+    { 
+      icon: <CodeIcon className="text-green-400" />, 
+      title: "Custom Development",
+      description: "Bespoke tech tailored to your vision."
+    },
+    { 
+      icon: <DatabaseIcon className="text-red-400" />, 
+      title: "Data Intelligence",
+      description: "Insights that drive strategic decisions."
+    }
+  ];
+
   return (
-    <div className="relative  py-20 md:py-32  bg-black text-white">
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 z-0">
-        {/* Floating SVGs */}
-        <img
-          src="/clouds.svg"
-          alt="Floating Cloud"
-          className="absolute  top-32 left-10 w-24 md:w-32 opacity-60 floating"
-        />
-        <img
-          src="/solution.svg"
-          alt="Floating Solution"
-          className="absolute bottom-20 right-20 w-28 md:w-36 opacity-60 floating-slow"
-        />
-        <img
-          src="/teamup.svg"
-          alt="Floating Collaboration"
-          className="absolute top-32 right-10 w-20 md:w-28 opacity-60 floating"
-        />
+    <motion.div 
+      style={{ scale, opacity, y }}
+      className="relative pt-[150px] pb-[50px] min-h-screen flex items-center 
+      bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] 
+      text-white overflow-hidden"
+    >
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        {[...Array(50)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ 
+              x: Math.random() * window.innerWidth, 
+              y: Math.random() * window.innerHeight,
+              opacity: 0
+            }}
+            animate={{ 
+              x: [
+                Math.random() * window.innerWidth, 
+                Math.random() * window.innerWidth
+              ],
+              y: [
+                Math.random() * window.innerHeight, 
+                Math.random() * window.innerHeight
+              ],
+              opacity: [0, 0.5, 0],
+              scale: [0.5, 1, 0.5]
+            }}
+            transition={{
+              duration: Math.random() * 10 + 5,
+              repeat: Infinity,
+              repeatType: "loop"
+            }}
+            className="absolute w-1 h-1 bg-white/50 rounded-full"
+          />
+        ))}
       </div>
 
-      {/* Content Section */}
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
-        <div className="text-center md:text-left space-y-6">
-          <h1 className="text-4xl mt-4 md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text text-white">
-            Unlock Limitless Potential with Technology
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed">
-            At <span className="text-orange-500 font-semibold">Seepratech</span>
-            , we redefine innovation with
-            <span className="text-blue-400 font-semibold">
-              {" "}
-              Cloud Solutions
-            </span>
-            ,
-            <span className="text-green-400 font-semibold">
-              {" "}
-              AI Technologies
-            </span>
-            , and
-            <span className="text-purple-400 font-semibold">
-              {" "}
-              Custom Development
-            </span>
-            . Empower your business with solutions built for the future.
-          </p>
-
-          {/* Highlights /}
-<div className="space-y-6">
-  {/ Cloud Infrastructure */}
-          <div className="flex items-start space-x-4">
-            <span className="text-orange-400 text-3xl font-bold">
-              <i className="fas fa-cloud"></i>
-            </span>
-            <div>
-              <h3 className="text-xl font-semibold text-white">
-                Cloud Infrastructure
-              </h3>
-              <p className="text-gray-300">
-                Scalable and secure solutions tailored to your business needs.
-              </p>
-            </div>
-          </div>
-
-          {/* AI & Automation */}
-          <div className="flex items-start space-x-4">
-            <span className="text-orange-400 text-3xl font-bold">
-              <i className="fas fa-robot"></i>
-            </span>
-            <div>
-              <h3 className="text-xl font-semibold text-white">
-                AI & Automation
-              </h3>
-              <p className="text-gray-300">
-                Optimize processes with intelligent automation tools.
-              </p>
-            </div>
-          </div>
-
-          {/* Custom Applications */}
-          <div className="flex items-start space-x-4">
-            <span className="text-orange-400 text-3xl font-bold">
-              <i className="fas fa-cogs"></i>
-            </span>
-            <div>
-              <h3 className="text-xl font-semibold text-white">
-                Custom Applications
-              </h3>
-              <p className="text-gray-300">
-                Tailored solutions designed to meet your unique requirements.
-              </p>
-            </div>
-          </div>
-
-          {/* Data Analytics */}
-          <div className="flex items-start space-x-4">
-            <span className="text-orange-400 text-3xl font-bold">
-              <i className="fas fa-chart-line"></i>
-            </span>
-            <div>
-              <h3 className="text-xl font-semibold text-white">
-                Data Analytics
-              </h3>
-              <p className="text-gray-300">
-                Transform data into actionable insights for informed
-                decision-making.
-              </p>
-            </div>
-          </div>
-
-          {/* Cybersecurity */}
-          <div className="flex items-start space-x-4">
-            <span className="text-orange-400 text-3xl font-bold">
-              <i className="fas fa-shield-alt"></i>
-            </span>
-            <div>
-              <h3 className="text-xl font-semibold text-white">
-                Cybersecurity
-              </h3>
-              <p className="text-gray-300">
-                Protect your digital assets with robust security measures.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Content with Static SVGs */}
-        <div className="flex justify-center items-center relative">
-          <div className="w-60 h-60 md:w-80 md:h-80 relative">
-            <img
-              src="/clouds.svg"
-              alt="Cloud Services"
-              className="absolute w-32 md:w-40 top-0 left-0"
-            />
-            <img
-              src="/solution.svg"
-              alt="Solutions"
-              className="absolute w-28 md:w-36 bottom-0 left-8"
-            />
-            <img
-              src="/teamup.svg"
-              alt="Team Collaboration"
-              className="absolute w-32 md:w-40 bottom-0 right-0"
-            />
-          </div>
-        </div>
-
-        <div className="text-center md:text-left">
-          <Link to="/contact">
-            <Button
-              variant="outline"
-              className="text-white  border-orange-600"
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div 
+          variants={heroVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-2 gap-12 items-center"
+        >
+          {/* Left Content */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            <motion.h1 
+              variants={itemVariants}
+              className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent 
+              bg-gradient-to-r from-blue-300 via-purple-500 to-pink-400 leading-tight"
             >
-              Get Started
-            </Button>
-          </Link>
-        </div>
+              Innovate. Transform. Elevate.
+            </motion.h1>
+
+            <motion.p 
+              variants={itemVariants}
+              className="text-xl text-gray-300 leading-relaxed"
+            >
+              Empowering businesses through revolutionary{" "}
+              <span className="text-blue-300 font-semibold">Technology</span>, 
+              intelligent{" "}
+              <span className="text-purple-300 font-semibold">Solutions</span>, 
+              and{" "}
+              <span className="text-pink-300 font-semibold">Innovation</span>.
+            </motion.p>
+
+            {services.map((service, index) => (
+              <motion.div 
+                key={index}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                className="flex items-center space-x-4 
+                bg-white/5 p-4 rounded-xl backdrop-blur-sm 
+                border border-white/10 hover:bg-white/10 
+                transition-all group"
+              >
+                <div className="text-4xl group-hover:rotate-6 transition-transform">
+                  {service.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">{service.title}</h3>
+                  <p className="text-gray-400">{service.description}</p>
+                </div>
+              </motion.div>
+            ))}
+
+            <motion.div 
+              variants={itemVariants}
+              className="flex items-center space-x-4"
+            >
+              <Link to="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-6 py-3 
+                  bg-gradient-to-r from-blue-600 to-purple-600 
+                  rounded-full text-white font-bold 
+                  hover:from-blue-700 hover:to-purple-700 
+                  transition-all shadow-lg shadow-blue-500/30"
+                >
+                  Start Your Journey <ArrowRightIcon size={20} />
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Content - Animated SVG */}
+          <motion.div 
+            variants={itemVariants}
+            className="hidden md:flex justify-center items-center"
+          >
+            <motion.div
+              animate={{
+                y: [0, -20, 0],
+                rotate: [0, 5, -5, 0]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
+              className="w-full max-w-md"
+            >
+              <img 
+                src="/solution.svg" 
+                alt="Technology Solutions" 
+                className="w-full h-auto drop-shadow-[0_0_50px_rgba(99,102,241,0.3)]"
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: [0, 1, 0],
+          y: [20, 0, 20]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "loop"
+        }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 
+        text-white/50 text-sm flex flex-col items-center"
+      >
+        <span>Scroll</span>
+        <ArrowRightIcon className="rotate-90" size={20} />
+      </motion.div>
+    </motion.div>
   );
 };
 
