@@ -1,10 +1,10 @@
 import React from 'react'
-import Hero from '../components/home/Hero'
 import FeaturedServices from '../components/home/FeaturedServices'
+import Hero from '../components/home/Hero'
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="home h-full">
       <Hero />
       <FeaturedServices />
     </div>

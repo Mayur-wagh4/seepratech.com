@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { SERVICES } from '../../constants/content';
 import ServiceCard from '../services/ServiceCard';
-
 const FeaturedServices = () => {
-  const services = [
-    { title: 'App Development', description: 'Custom mobile applications for iOS and Android' },
-    { title: 'Web Development', description: 'Responsive and scalable web applications' },
-    { title: 'Cloud Services', description: 'Comprehensive cloud solutions for your business' },
-  ];
+  const [services, setServices] = useState(SERVICES);
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+        <h2 className=" text-4xl mt-4 md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text text-white text-center mb-12">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} title={service.title} description={service.description} />
+            <ServiceCard key={index} title={service.title} description={service.description} icon={service.icon} />
           ))}
         </div>
       </div>

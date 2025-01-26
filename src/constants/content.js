@@ -7,21 +7,43 @@ export const COMPANY_INFO = {
   export const SERVICES = [
     {
       id: 1,
-      title: "App Development",
-      description: "Custom mobile applications for iOS and Android platforms."
+      title: 'Cloud Infrastructure',
+      description: 'Scalable and secure cloud solutions for your business.',
+      icon: '/clouds.svg',
     },
     {
       id: 2,
-      title: "Web Development",
-      description: "Responsive and scalable web applications tailored to your needs."
+      title: 'Software Engineering',
+      description: 'Expert software development services for robust solutions.',
+      icon: '/programmer.svg',
     },
     {
       id: 3,
-      title: "Cloud Services",
-      description: "Comprehensive cloud solutions to optimize your business operations."
+      title: 'Web Development',
+      description: 'Responsive and scalable web applications tailored to your needs.',
+      icon: '/webdev2.svg',
+    },
+    {
+      id: 4,
+      title: 'Mobile App Development',
+      description: 'Developing intuitive and user-friendly mobile applications.',
+      icon: '/mobile apps.svg',
+    },
+    {
+      id: 5,
+      title: 'Custom Applications',
+      description: 'Tailored applications designed to meet your specific needs.',
+      icon: '/deskapps.svg',
+    },
+    {
+      id: 6,
+      title: 'AI & Automation',
+      description: 'Optimize your processes with intelligent automation.',
+      icon: '/AI.svg',
     }
   ];
-  
+
+
   export const PORTFOLIO_PROJECTS = [
     {
       id: 1,

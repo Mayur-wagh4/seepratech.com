@@ -143,3 +143,29 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floating-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating {
+  animation: floating 5s ease-in-out infinite;
+}
+
+.floating-slow {
+  animation: floating-slow 8s ease-in-out infinite;
+}

@@ -16,7 +16,7 @@ const Button = ({
       disabled={isLoading || disabled} // Disable the button when loading or explicitly disabled
       className={`px-4 py-2 rounded-full font-medium transition-all duration-200 ease-in-out 
         ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
-        ${disabled ? 'bg-neutral-300 text-neutral-500 cursor-not-allowed' : 'bg-black text-white  border border-neutral-800 hover:text-black hover:bg-gray-200 hover:transform hover:translate-y-[-2px] hover:shadow-medium'}
+        ${disabled ? 'bg-neutral-300 text-neutral-500 cursor-not-allowed' : 'bg-black text-white  border border-orange-700 hover:text-black hover:bg-gray-200 hover:transform hover:translate-y-[-2px] hover:shadow-medium'}
         shadow-soft
         ${className}`} // Use dynamic styles and pass additional classes via className prop
       {...rest} // Pass other props to the button (e.g. aria-label)
