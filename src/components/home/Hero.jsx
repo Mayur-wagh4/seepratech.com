@@ -1,10 +1,12 @@
-import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
-import { 
-  CloudIcon, RocketIcon, ChartLineIcon, ShieldIcon, 
-  ArrowRightIcon, CodeIcon, DatabaseIcon 
+import {
+  ArrowRightIcon,
+  CloudIcon,
+  CodeIcon, DatabaseIcon,
+  RocketIcon
 } from "lucide-react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { scrollYProgress } = useScroll();
@@ -40,30 +42,30 @@ const Hero = () => {
   const services = [
     { 
       icon: <CloudIcon className="text-blue-400" />, 
-      title: "Cloud Native",
-      description: "Scalable infrastructure beyond boundaries."
+      title: "Cloud-Powered Scalability",
+      description: "Seamless, secure, and limitless cloud solutions."
     },
     { 
       icon: <RocketIcon className="text-purple-400" />, 
-      title: "AI Acceleration",
-      description: "Intelligent solutions, transformative outcomes."
+      title: "AI-Driven Innovation",
+      description: "Unlock new possibilities with intelligent automation."
     },
     { 
       icon: <CodeIcon className="text-green-400" />, 
-      title: "Custom Development",
-      description: "Bespoke tech tailored to your vision."
+      title: "Tailor-Made Development",
+      description: "Custom software designed for your unique vision."
     },
     { 
       icon: <DatabaseIcon className="text-red-400" />, 
-      title: "Data Intelligence",
-      description: "Insights that drive strategic decisions."
+      title: "Smart Data Insights",
+      description: "Leverage data to drive strategic growth."
     }
   ];
 
   return (
     <motion.div 
       style={{ scale, opacity, y }}
-      className="relative pt-[150px] pb-[50px] min-h-screen flex items-center 
+      className="relative pt-[130px] pb-[50px] min-h-screen flex items-center 
       bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] 
       text-white overflow-hidden"
     >
@@ -212,7 +214,7 @@ const Hero = () => {
           repeatType: "loop"
         }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 
-        text-white/50 text-sm flex flex-col items-center"
+        text-white/50  text-sm hidden  sm:flex flex-col items-center"
       >
         <span>Scroll</span>
         <ArrowRightIcon className="rotate-90" size={20} />

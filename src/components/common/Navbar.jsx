@@ -1,13 +1,14 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { SERVICES } from "../../constants/content"; // Importing SERVICES array
 import Button from "./Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState("");
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false); // New state for mobile dropdown
+  const [activeDropdown, setActiveDropdown] = useState(false); // Track dropdown visibility
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -15,12 +16,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const services = [
-    "Web Development",
-    "Mobile Apps",
-    "Cloud Solutions",
-    "AI Services",
-  ];
+  // Function to toggle dropdown on click
+  const toggleDropdown = () => {
+    setActiveDropdown((prev) => !prev);
+  };
 
   return (
     <nav
@@ -37,7 +36,7 @@ const Navbar = () => {
             <img
               src="/logo.png"
               alt="Logo"
-              className="object-contain w-full h-full" // Maintains aspect ratio and ensures the logo fits within the container
+              className="object-contain w-full h-full"
             />
           </div>
 
@@ -47,29 +46,33 @@ const Navbar = () => {
               Home
             </Link>
 
-            <div
-              className="relative group"
-              onMouseEnter={() => setActiveDropdown("services")}
-              onMouseLeave={() => setActiveDropdown("")}
-            >
-              <button className="nav-link flex items-center space-x-1">
+            {/* Services Dropdown */}
+            <div className="relative">
+              <button
+                onClick={toggleDropdown}
+                className="nav-link flex items-center space-x-1"
+              >
                 <span>Services</span>
-                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    activeDropdown ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               <div
                 className={`absolute top-full -left-4 w-48 py-2 mt-2 bg-white dark:bg-neutral-800 rounded-xl shadow-soft transition-all duration-200 ${
-                  activeDropdown === "services"
+                  activeDropdown
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 -translate-y-4 pointer-events-none"
                 }`}
               >
-                {services.map((service, index) => (
+                {SERVICES.map((service) => (
                   <Link
-                    key={index}
-                    to={`/services/${service.toLowerCase().replace(" ", "-")}`}
+                    key={service.id}
+                    to={`/services/${service.title.toLowerCase().replace(" ", "-")}`}
                     className="block px-4 py-2 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-200"
                   >
-                    {service}
+                    {service.title}
                   </Link>
                 ))}
               </div>
@@ -108,7 +111,7 @@ const Navbar = () => {
             {/* Mobile Services Dropdown */}
             <div className="space-y-2">
               <button
-                onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)} // Toggle state for mobile
+                onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
                 className="flex items-center justify-between px-4 text-neutral-600 dark:text-neutral-300"
               >
                 <span>Services</span>
@@ -120,15 +123,13 @@ const Navbar = () => {
               </button>
               {mobileDropdownOpen && (
                 <div className="pl-4 space-y-2">
-                  {services.map((service, index) => (
+                  {SERVICES.map((service) => (
                     <Link
-                      key={index}
-                      to={`/services/${service
-                        .toLowerCase()
-                        .replace(" ", "-")}`}
+                      key={service.id}
+                      to={`/services/${service.title.toLowerCase().replace(" ", "-")}`}
                       className="mobile-nav-link"
                     >
-                      {service}
+                      {service.title}
                     </Link>
                   ))}
                 </div>
